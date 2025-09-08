@@ -1,7 +1,31 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Logo from "../assets/BytehiveLogo.png";
+import StreakModal from "../components/Streak/StreakModal";
+import UserDropdown from "../components/UI/UserDropdown";
+
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [streakModalOpen, setStreakModalOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleBookmarkClick = () => {
+    navigate('/saved');
+  };
+
+  const handleStreakClick = () => {
+    setStreakModalOpen(true);
+  };
+
+  const handleUserClick = () => {
+    setUserDropdownOpen(!userDropdownOpen);
+  };
+
+  const handleHistoryClick = () => {
+    setUserDropdownOpen(false);
+    navigate('/history');
+  };
 
   return (
     <header className="bg-navbar-bg backdrop-blur-sm sticky top-0 z-50 border-b border-navbar-border">
@@ -15,7 +39,6 @@ export default function Navbar() {
                 Bytehive
               </h1>
             </a>
-            
           </div>
 
           {/* DESKTOP NAV */}
@@ -26,11 +49,14 @@ export default function Navbar() {
                   <span className="material-icons text-4xl">grid_view</span>
                 </div>
               </a>
-              <a className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group" href="#">
+              <button 
+                onClick={handleBookmarkClick}
+                className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group"
+              >
                 <div className="p-3 rounded-md bg-rich-black-light group-hover:bg-periwinkle-light transition-colors flex items-center justify-center">
                   <span className="material-icons text-4xl">bookmark</span>
                 </div>
-              </a>
+              </button>
               <a className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group" href="#">
                 <div className="p-3 rounded-md bg-rich-black-light group-hover:bg-periwinkle-light transition-colors flex items-center justify-center">
                   <span className="material-icons text-4xl">groups</span>
@@ -40,27 +66,40 @@ export default function Navbar() {
 
             {/* Right side (desktop) */}
             <div className="flex items-center space-x-3">
-              <a className="flex items-center text-pinkish hover:text-pinkish-dark transition-colors group relative" href="#">
+              <button 
+                onClick={handleStreakClick}
+                className="flex items-center text-pinkish hover:text-pinkish-dark transition-colors group relative"
+              >
                 <div className="p-3 rounded-md bg-rich-black-light group-hover:bg-periwinkle-light transition-colors flex items-center justify-center space-x-1">
                   <span className="material-icons text-4xl" style={{ color: "var(--pinkish)" }}>
                     local_fire_department
                   </span>
                   <span className="text-columbia-blue text-sm font-bold">2</span>
                 </div>
-              </a>
+              </button>
 
               <button className="text-columbia-blue hover:text-white p-3 rounded-full hover:bg-periwinkle-light transition-colors relative flex items-center justify-center">
                 <span className="material-icons text-3xl">notifications</span>
                 <span className="absolute top-1.5 right-1.5 block h-3 w-3 rounded-full bg-medium-slate-blue"></span>
               </button>
 
-              <button className="flex items-center justify-center">
-                <img
-                  alt="User avatar"
-                  className="w-11 h-11 rounded-full border-2 border-transparent hover:border-periwinkle transition-all"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0SOH_qdug48AdwWxvlB89VAMgWwLvCzU5nSDeh7sGBOxfcwtoGxXGFu3Q2JauQZWpKqk-GCgCttE6cJIsPEkbYBWNgz8qS6HIT-5Sz6LgHkDAzWnkSvAOUOk7CDaVV0qGaLh5TF5SZPN1EfhhvDKzelBH3komHVKuAU_sLPUdP82-LnV5uJEpBfaz0d1ZudZEkDGu7GEHq46ftKnljIDa0wEpEPuusxbFSIsOPoONgMi3EDnu1Bupe8IbBw6vKFxxdMaP6_2s5fii"
+              <div className="relative">
+                <button 
+                  onClick={handleUserClick}
+                  className="flex items-center justify-center"
+                >
+                  <img
+                    alt="User avatar"
+                    className="w-11 h-11 rounded-full border-2 border-transparent hover:border-periwinkle transition-all"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0SOH_qdug48AdwWxvlB89VAMgWwLvCzU5nSDeh7sGBOxfcwtoGxXGFu3Q2JauQZWpKqk-GCgCttE6cJIsPEkbYBWNgz8qS6HIT-5Sz6LgHkDAzWnkSvAOUOk7CDaVV0qGaLh5TF5SZPN1EfhhvDKzelBH3komHVKuAU_sLPUdP82-LnV5uJEpBfaz0d1ZudZEkDGu7GEHq46ftKnljIDa0wEpEPuusxbFSIsOPoONgMi3EDnu1Bupe8IbBw6vKFxxdMaP6_2s5fii"
+                  />
+                </button>
+                <UserDropdown 
+                  isOpen={userDropdownOpen}
+                  onClose={() => setUserDropdownOpen(false)}
+                  onHistoryClick={handleHistoryClick}
                 />
-              </button>
+              </div>
             </div>
           </div>
 
@@ -85,24 +124,39 @@ export default function Navbar() {
             <span className="material-icons text-2xl">groups</span>
             <span>Communities</span>
           </a>
-          <a href="#" className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors">
+          <a href="/events" className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors">
             <span className="material-icons text-2xl">event</span>
             <span>Events</span>
           </a>
-          <a href="#" className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors">
+          <button 
+            onClick={handleBookmarkClick}
+            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left"
+          >
             <span className="material-icons text-2xl">bookmark</span>
             <span>Saved</span>
-          </a>
-          <a href="#" className="flex items-center space-x-4 text-pinkish hover:text-pinkish-dark transition-colors">
+          </button>
+          <button 
+            onClick={handleStreakClick}
+            className="flex items-center space-x-4 text-pinkish hover:text-pinkish-dark transition-colors w-full text-left"
+          >
             <span className="material-icons text-2xl">local_fire_department</span>
             <span>Streak</span>
-          </a>
-          <a href="#" className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors">
-            <span className="material-icons text-2xl">account_circle</span>
-            <span>Profile</span>
-          </a>
+          </button>
+          <button 
+            onClick={handleHistoryClick}
+            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left"
+          >
+            <span className="material-icons text-2xl">history</span>
+            <span>History</span>
+          </button>
         </div>
       )}
+
+      {/* Streak Modal */}
+      <StreakModal 
+        isOpen={streakModalOpen}
+        onClose={() => setStreakModalOpen(false)}
+      />
     </header>
   );
 }
