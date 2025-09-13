@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
-import PostFormCard from "../components/CreatePost/PostFormCard";
+import CommunityFormCard from "../components/CreatePost/CommunityFormCard";
 import SidebarCard from "../shared/SidebarCard";
 
-const CreatePost = () => {
+const CreateCommunity = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1); // Go back to the previous page in history
+    navigate(-1); // Go back to previous page
   };
 
   return (
@@ -26,28 +26,27 @@ const CreatePost = () => {
                 className="flex items-center gap-2 text-white hover:text-periwinkle transition-colors"
               >
                 <span className="material-icons">arrow_back</span>
-                <span className="text-xl font-fenix">Create a New Post</span>
+                <span className="text-xl font-fenix">Create a New Community</span>
               </button>
             </div>
             
-            <PostFormCard />
+            <CommunityFormCard />
           </div>
 
           {/* Right - Sidebar */}
           <aside className="w-full lg:w-[320px] flex flex-col gap-6">
             <SidebarCard
-              title="Create Communities"
-              description="Build and grow your own community around specific interests and topics."
-              buttonText="Create a Community"
-              icon="group_add"
-              navigateTo="/create-community"
+              title="Create Posts"
+              description="Share your thoughts, ideas, and experiences with the community."
+              buttonText="Create a Post"
+              icon="edit"
+              navigateTo="/create-post"
             />
             <SidebarCard
               title="Host Events"
               description="Organize virtual events, workshops, and meetups for your community members."
               buttonText="Add an Event"
               icon="event"
-              navigateTo="/events"
             />
           </aside>
         </div>
@@ -56,4 +55,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default CreateCommunity;

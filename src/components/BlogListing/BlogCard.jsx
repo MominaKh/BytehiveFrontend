@@ -1,6 +1,9 @@
+// components/BlogCard.jsx (Updated)
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({
+  id = 1, // Add id prop for navigation
   image,
   community,
   date,
@@ -19,21 +22,39 @@ const BlogCard = ({
   const [isBookmarked, setIsBookmarked] = useState(bookmarked);
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
+  
+  const navigate = useNavigate();
 
   // Handlers
-  const toggleBookmark = () => setIsBookmarked(!isBookmarked);
-  const toggleUpvote = () => {
+  const toggleBookmark = (e) => {
+    e.stopPropagation(); // Prevent card click
+    setIsBookmarked(!isBookmarked);
+  };
+  
+  const toggleUpvote = (e) => {
+    e.stopPropagation(); // Prevent card click
     setIsUpvoted(!isUpvoted);
     if (isDownvoted) setIsDownvoted(false); // can't be both
   };
-  const toggleDownvote = () => {
+  
+  const toggleDownvote = (e) => {
+    e.stopPropagation(); // Prevent card click
     setIsDownvoted(!isDownvoted);
     if (isUpvoted) setIsUpvoted(false);
   };
 
+  const handleCardClick = () => {
+    navigate(`/blog/${id}`);
+  };
+
+  const handleActionClick = (e) => {
+    e.stopPropagation(); // Prevent card click when clicking on action buttons
+  };
+
   return (
     <div
-      className="bg-navbar-bg rounded-xl overflow-hidden border z-0"
+      onClick={handleCardClick}
+      className="bg-navbar-bg rounded-xl overflow-hidden border z-0 cursor-pointer hover:border-periwinkle transition-colors"
       style={{
         border: "1px solid var(--navbar-border)",
       }}
@@ -62,7 +83,9 @@ const BlogCard = ({
           </div>
 
           {/* Title */}
-          <h3 className="font-fenix text-2xl text-white mb-3">{title}</h3>
+          <h3 className="font-fenix text-2xl text-white mb-3 hover:text-periwinkle transition-colors">
+            {title}
+          </h3>
 
           {/* Description */}
           <p
@@ -104,7 +127,7 @@ const BlogCard = ({
             </div>
 
             {/* Actions */}
-            <div className="flex items-center space-x-4 text-periwinkle">
+            <div className="flex items-center space-x-4 text-periwinkle" onClick={handleActionClick}>
               {/* Upvote */}
               <button
                 onClick={toggleUpvote}

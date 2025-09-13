@@ -27,6 +27,10 @@ export default function Navbar() {
     navigate('/history');
   };
 
+  const handleCommunitiesClick = () => {
+    navigate('/communities');
+  };
+
   return (
     <header className="bg-navbar-bg backdrop-blur-sm sticky top-0 z-50 border-b border-navbar-border">
       <div className="container mx-auto px-5 sm:px-7 lg:px-10">
@@ -51,24 +55,27 @@ export default function Navbar() {
               </a>
               <button 
                 onClick={handleBookmarkClick}
-                className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group"
+                className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group cursor-pointer"
               >
                 <div className="p-3 rounded-md bg-rich-black-light group-hover:bg-periwinkle-light transition-colors flex items-center justify-center">
                   <span className="material-icons text-4xl">bookmark</span>
                 </div>
               </button>
-              <a className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group" href="#">
+              <button 
+                onClick={handleCommunitiesClick}
+                className="flex flex-col items-center text-columbia-blue hover:text-white transition-colors group cursor-pointer"
+              >
                 <div className="p-3 rounded-md bg-rich-black-light group-hover:bg-periwinkle-light transition-colors flex items-center justify-center">
                   <span className="material-icons text-4xl">groups</span>
                 </div>
-              </a>
+              </button>
             </nav>
 
             {/* Right side (desktop) */}
             <div className="flex items-center space-x-3">
               <button 
                 onClick={handleStreakClick}
-                className="flex items-center text-pinkish hover:text-pinkish-dark transition-colors group relative"
+                className="flex items-center text-pinkish hover:text-pinkish-dark transition-colors group relative cursor-pointer"
               >
                 <div className="p-3 rounded-md bg-rich-black-light group-hover:bg-periwinkle-light transition-colors flex items-center justify-center space-x-1">
                   <span className="material-icons text-4xl" style={{ color: "var(--pinkish)" }}>
@@ -78,7 +85,7 @@ export default function Navbar() {
                 </div>
               </button>
 
-              <button className="text-columbia-blue hover:text-white p-3 rounded-full hover:bg-periwinkle-light transition-colors relative flex items-center justify-center">
+              <button className="text-columbia-blue hover:text-white p-3 rounded-full hover:bg-periwinkle-light transition-colors relative flex items-center justify-center cursor-pointer">
                 <span className="material-icons text-3xl">notifications</span>
                 <span className="absolute top-1.5 right-1.5 block h-3 w-3 rounded-full bg-medium-slate-blue"></span>
               </button>
@@ -86,7 +93,7 @@ export default function Navbar() {
               <div className="relative">
                 <button 
                   onClick={handleUserClick}
-                  className="flex items-center justify-center"
+                  className="flex items-center justify-center cursor-pointer"
                 >
                   <img
                     alt="User avatar"
@@ -107,7 +114,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-columbia-blue hover:text-white p-3 rounded-md hover:bg-periwinkle-light transition-colors"
+              className="text-columbia-blue hover:text-white p-3 rounded-md hover:bg-periwinkle-light transition-colors cursor-pointer"
             >
               <span className="material-icons text-4xl">
                 {mobileMenuOpen ? "close" : "menu"}
@@ -120,31 +127,34 @@ export default function Navbar() {
       {/* MOBILE DROPDOWN */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-navbar-bg border-t border-navbar-border px-7 py-5 space-y-5 text-lg">
-          <a href="#" className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors">
+          <button 
+            onClick={handleCommunitiesClick}
+            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left cursor-pointer"
+          >
             <span className="material-icons text-2xl">groups</span>
             <span>Communities</span>
-          </a>
+          </button>
           <a href="/events" className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors">
             <span className="material-icons text-2xl">event</span>
             <span>Events</span>
           </a>
           <button 
             onClick={handleBookmarkClick}
-            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left"
+            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left cursor-pointer"
           >
             <span className="material-icons text-2xl">bookmark</span>
             <span>Saved</span>
           </button>
           <button 
             onClick={handleStreakClick}
-            className="flex items-center space-x-4 text-pinkish hover:text-pinkish-dark transition-colors w-full text-left"
+            className="flex items-center space-x-4 text-pinkish hover:text-pinkish-dark transition-colors w-full text-left cursor-pointer"
           >
             <span className="material-icons text-2xl">local_fire_department</span>
             <span>Streak</span>
           </button>
           <button 
             onClick={handleHistoryClick}
-            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left"
+            className="flex items-center space-x-4 text-columbia-blue hover:text-white transition-colors w-full text-left cursor-pointer"
           >
             <span className="material-icons text-2xl">history</span>
             <span>History</span>
