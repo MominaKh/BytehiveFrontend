@@ -121,7 +121,7 @@ const SavedPage = () => {
               </p>
             </div>
             
-            {/* Search Bar - Top Right with increased width */}
+            {/* Search Bar */}
             <div className="flex items-center gap-4 w-full md:w-[500px]">
               <SearchBar />
             </div>

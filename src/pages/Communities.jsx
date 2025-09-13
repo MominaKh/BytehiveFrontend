@@ -127,7 +127,7 @@ const Communities = () => {
         </div>
       </div>
 
-      {/* Content - moved up with negative margin to eliminate gap */}
+      {/* Content - moved up */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 z-10 -mt-4">
         {/* Communities Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

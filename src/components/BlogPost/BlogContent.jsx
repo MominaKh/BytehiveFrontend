@@ -1,4 +1,3 @@
-// components/BlogPost/BlogContent.jsx
 import React, { useState, useRef } from "react";
 import TextSelectionPopup from "./TextSelectionPopup";
 import CommentSection from "./CommentSection";

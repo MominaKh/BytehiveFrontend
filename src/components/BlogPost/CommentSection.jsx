@@ -1,4 +1,3 @@
-// components/BlogPost/CommentSection.jsx
 import React, { useState } from "react";
 
 const CommentSection = () => {

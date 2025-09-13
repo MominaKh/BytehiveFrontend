@@ -30,7 +30,7 @@ const CommunityCard = ({
     >
       <div className="p-6">
         <div className="flex items-start gap-4">
-          {/* Community Image - Increased Size */}
+          {/* Community Image */}
           <div className="flex-shrink-0">
             <img
               alt={name}
@@ -59,7 +59,7 @@ const CommunityCard = ({
               {description}
             </p>
 
-            {/* Stats - Updated color to match CommentSection header */}
+            {/* Stats */}
             <div className="flex items-center space-x-4 mb-4 text-sm font-lato" style={{ color: "#8B93D1" }}>
               <div className="flex items-center">
                 <span className="material-icons text-base mr-1 text-periwinkle">people</span>
@@ -73,7 +73,7 @@ const CommunityCard = ({
 
             {/* Action Buttons */}
             <div className="flex justify-between items-center">
-              {/* View Community Button - Bottom left, moved more left */}
+              {/* View Community Button */}
               <button
                 onClick={handleViewCommunity}
                 className="px-0 py-2 bg-transparent text-white hover:text-periwinkle transition-colors font-lato font-normal text-sm"

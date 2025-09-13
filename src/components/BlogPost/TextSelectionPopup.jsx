@@ -1,4 +1,3 @@
-// components/BlogPost/TextSelectionPopup.jsx
 import React, { useState, useEffect } from "react";
 
 const TextSelectionPopup = ({ position, selectedText, onClose }) => {
@@ -22,7 +21,7 @@ const TextSelectionPopup = ({ position, selectedText, onClose }) => {
     };
   }, []);
 
-  // Mock data for demonstration
+  // Mock data 
   const meaningData = {
     word: selectedText.split(' ')[0],
     definition: "A powerful React framework that enables server-side rendering and static site generation for building modern web applications.",
